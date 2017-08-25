@@ -1,0 +1,62 @@
+---
+- name: Copy and extract the hap_manager service
+  unarchive:
+    src: hap_manager.tar.gz
+    dest: /
+
+- name: Install yum required packages
+  action: yum pkg={{item}} state=installed
+  with_items:
+    - git
+    - socat
+
+- name: Install pip packages
+  pip: name={{item}} state=present
+  with_items:
+    - jinja2
+    - deepdiff
+    - requests
+#- name: Install jinja2
+#  pip:
+#    name: jinja2
+#
+#- name: Install deepdiff
+#  pip:
+#    name: deepdiff
+
+#- name: Install requests
+#  pip:
+#    name: requests
+
+- name: Create errors html dir for haproxy
+  file: path=/etc/haproxy/errors state=directory
+
+#- name: Move to /etc/haproxy the haproxy.conf
+#  shell: cp /Celtic-Kubernetes/external_loadbalancer_hap/system/haproxy.cfg /etc/haproxy/
+
+- name: Move to /etc/haproxy/erros the content of this folder
+  shell: cp /hap_manager/external_loadbalancer_hap/errors/* /etc/haproxy/errors/
+
+- name: Create state global 1/2
+  file: path=/var/state/haproxy/ state=directory
+
+- name: Create state global 2/2
+  shell: touch /var/state/haproxy/global
+
+#- name: Enable haproxy
+#  service: name=haproxy enabled=yes
+
+- name: Copy file hap_manager.service
+  shell: cp /hap_manager/external_loadbalancer_hap/system/hap_manager.service /lib/systemd/system/hap_manager.service
+
+- name: Modify permissions of hap_manager.service
+  file: path=/lib/systemd/system/hap_manager.service mode=0644
+
+- name: Reload daemon systemctl
+  shell: systemctl daemon-reload
+
+- name: Start hap_manager.service
+  service: name=hap_manager enabled=yes state=started
+
+- name: Restart and Enable HAproxy
+  service: name=haproxy enabled=yes state=restarted

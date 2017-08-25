@@ -1,0 +1,31 @@
+---
+- name: Install pcs and haproxy
+  yum: pkg={{item}} state=latest
+  with_items:
+    - pcs
+    - haproxy
+
+- name: Modify /etc/hosts file to remove localhost assigment
+  lineinfile:
+     dest: '/etc/hosts'
+     regexp: '127.0.0.1\s+{{ ansible_hostname }}'
+     line: ''
+     owner: root
+     group: root
+     mode: 0664
+
+- name: Changing password
+  shell: echo -e "{{ pcs_user }}\n{{ pcs_password }}" | sudo passwd {{ pcs_password }}
+  become_method: sudo
+
+- name: Copy corosync configuration file
+  template: src=corosync_config.j2 dest=/etc/corosync/corosync.conf
+
+- name: Restart PCS service
+  service: name=pcsd enabled=yes state=restarted
+
+- name: Authentication cluster
+  shell: pcs cluster auth -u {{ pcs_user }} -p {{ pcs_password }} --force
+
+- name:	Set permission for HAProxy bind socket
+  shell: setsebool -P haproxy_connect_any=1

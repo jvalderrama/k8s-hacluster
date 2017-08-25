@@ -1,0 +1,7 @@
+---
+- name: Build hosts file
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ hostvars[item].inventory_hostname }} {{ hostvars[item].cluster_host }}"
+    state: present
+  with_items: "{{ groups.all }}"

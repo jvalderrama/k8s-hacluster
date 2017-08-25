@@ -1,0 +1,38 @@
+---
+- hosts: cluster
+#  user: root
+  become: true
+  roles:
+    - cluster
+
+- hosts: masters
+#  user: root
+  become: true
+  roles:
+    - masters
+
+- hosts: minions
+#  user: root
+  become: true
+  roles:
+    - minions
+
+- hosts: master-1
+#  user: root
+  become: true
+  roles:
+    - pcs_hamaster_setup
+    - nginx_services
+
+- hosts: proxies
+#  user: root
+  become: true
+  roles:
+    - proxy
+    - hap_manager
+
+- hosts: proxy-2
+#  user: root
+  become: true
+  roles:
+    - pcs_haproxy_setup

@@ -1,0 +1,25 @@
+[cluster]
+10.10.10.60 cluster_host=Mulhacen-master-1
+10.10.10.61 cluster_host=Veleta-master-2
+10.10.10.62 cluster_host=Alcazaba-minion-2
+10.10.10.63 cluster_host=Caballo-minion-1
+10.10.10.64 cluster_host=Caldera-proxy
+10.10.10.67 cluster_host=Jabalcon-proxy
+[masters]
+10.10.10.60 etcd_name=etcd0
+10.10.10.61 etcd_name=etcd1
+[master-1]
+10.10.10.60
+[minions]
+10.10.10.62
+10.10.10.63
+[proxies]
+10.10.10.64
+10.10.10.67
+[proxy-1]
+10.10.10.64
+[proxy-2]
+10.10.10.67
+
+
+

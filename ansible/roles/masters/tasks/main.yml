@@ -1,0 +1,58 @@
+---
+- name: Modify /etc/hosts file to remove localhost assigment
+  lineinfile:
+     dest: '/etc/hosts'
+     regexp: '127.0.0.1\s+{{ ansible_hostname }}'
+     line: ''
+     owner: root
+     group: root
+     mode: 0664
+
+- name: Install NTP service
+  yum: pkg={{item}} state=installed
+  with_items:
+    - ntp
+    - ntpdate
+    - ntp-doc
+    - corosync
+
+- name: Copy ntp configuration file
+  copy: src=ntp.conf dest=/etc/ntp.conf mode=0664
+
+- name: Enable on start up ntp service
+  shell: chkconfig ntpd on
+
+- name: Restart ntp service
+  service: name=ntpd enabled=yes state=restarted
+
+- name: Install etcd, kubernetes-master, pcs and fence-agents-all
+  yum: pkg={{item}} state=installed
+  with_items:
+    - etcd
+    - kubernetes-master
+    - pcs
+    - fence-agents-all
+
+- name: Copy etcd configuration file
+  template: src=etcd_config.j2 dest=/etc/etcd/etcd.conf mode=0664
+
+- name: Copy apiserver configuration file
+  template: src=apiserver_config.j2 dest=/etc/kubernetes/apiserver
+
+- name: Restart and enable etcd service
+  service: name=etcd enabled=yes state=restarted
+
+- name: Define the flannel network for the cluster in etcd service
+  shell: etcdctl mk /centOS/network/config '{{ flannel_network }}'
+  when: inventory_hostname in groups['master-1']
+  ignore_errors: yes
+
+- name: Changing password pcs cluster
+  shell: echo -e "{{ pcs_user }}\n{{ pcs_password }}" | sudo passwd {{ pcs_password }}
+  become_method: sudo
+
+- name: Restart ans enable pcs service
+  service: name=pcsd enabled=yes state=restarted
+
+- name: Copy corosync configuration file
+  template: src=corosync_config.j2 dest=/etc/corosync/corosync.conf mode=0664

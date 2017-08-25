@@ -1,0 +1,54 @@
+---
+# Variables listed here are applicable to all host groups
+
+#PCS General Cluster Configuration
+pcs_cluster_name: PCS-HA-Kubernetes
+pcs_user: hacluster
+pcs_password: hacluster
+
+#PCS Cluster Masters Configuration
+pcs_master1: Mulhacen-master-1
+pcs_master2: Veleta-master-2
+pcs_masters_vip_address: 10.10.10.69
+pcs_masters_vip_netmask: 24
+pcs_masters_nic: eth1
+pcs_masters_interval: 30s
+pcs_masters_clone_max: 2
+pcs_masters_clone_node_max: 2
+pcs_masters_master_max: 2
+pcs_masters_cluster_group_name: kubernetes-master
+
+#PCS Cluster Proxies Configuration
+pcs_proxy1: Caldera-proxy-1
+pcs_proxy2: Jabalcon-proxy-2
+pcs_proxies_vip_address: 10.10.10.68
+pcs_proxies_vip_netmask: 24
+pcs_proxies_interval: 30s
+pcs_proxies_clone_max: 2
+pcs_proxies_clone_node_max: 2
+pcs_proxies_master_max: 2
+pcs_proxies_cluster_group_name: kubernetes-loadbalancer
+
+#Kubernetes API Configuration
+kubu_api_address: 0.0.0.0
+kube_api_port: 8080
+kubelet_address: 0.0.0.0
+kubelet_port: 10250
+etcd_server1: 10.10.10.60
+etcd_server2: 10.10.10.61
+etcd_port_servers: 2379
+kube_service_address: 10.254.0.0/16
+args_cluster_dns: 10.254.254.254
+args_cluster_domain: cluster.local
+
+#Flannel Configuration
+flannel_etcd_key: "/centOS/network"       
+flannel_network: '{"Network":"10.80.0.0/16"}'
+
+#Proxy Configuration
+proxy_minion1: Caballo-minion-1
+proxy_minion2: Alcazaba-minion-2
+proxy_ip_minion1: 10.10.10.62
+proxy_ip_minion2: 10.10.10.63
+proxy_port_backend1: 30630
+proxy_port_backend2: 30357

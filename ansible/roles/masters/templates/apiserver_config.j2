@@ -1,0 +1,10 @@
+#Kubernetes API Configuration
+
+KUBE_API_ADDRESS="--address={{ kubu_api_address }}"
+KUBE_API_PORT="--port={{ kube_api_port }}"
+KUBELET_PORT="--kubelet_port={{ kubelet_port }}"
+KUBE_ETCD_SERVERS="--etcd_servers=http://{{ etcd_server1 }}:{{ etcd_port_servers }},http://{{ etcd_server2 }}:{{ etcd_port_servers }}"
+KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range={{ kube_service_address }}"
+KUBE_ADMISSION_CONTROL="--admission_control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota"
+KUBE_API_ARGS=""
+

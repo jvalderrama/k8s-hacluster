@@ -1,0 +1,17 @@
+#
+# Systemd unit file for HAP Manager
+#
+
+[Unit]
+Description=HAP Manager
+
+[Service]
+User=root
+Type=forking
+ExecStart=/usr/bin/python /hap_manager/external_loadbalancer_hap/hap_manager_daemon.py start
+ExecStop=/usr/bin/python /hap_manager/external_loadbalancer_hap/hap_manager_daemon.py stop
+Restart=/usr/bin/python /hap_manager/external_loadbalancer_hap/hap_manager_daemon.py stop; /usr/bin/python /hap_manager/external_loadbalancer_hap/hap_manager_daemon.py start
+PIDFile=/var/run/hap_manager.pid
+
+[Install]
+WantedBy=multi-user.target

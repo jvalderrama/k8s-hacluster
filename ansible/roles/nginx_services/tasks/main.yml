@@ -1,0 +1,26 @@
+---
+- name: Wait for port 8080 to become open on the host
+  wait_for:
+    port: 8080
+    delay: 10
+
+- name: Copy nginx-rc
+  copy: src=nginx-rc.yml dest=/tmp/nginx-rc.yml mode=0664
+
+- name: Copy nginx-svc
+  copy: src=nginx-svc.yml dest=/tmp/nginx-svc.yml mode=0664
+
+- name: Copy nginx-svc2
+  copy: src=nginx-svc2.yml dest=/tmp/nginx-svc2.yml mode=0664
+
+- name: Run nginx-rc pod
+  shell: kubectl create -f /tmp/nginx-rc.yml
+  ignore_errors: yes
+
+- name: Run nginx-svc service 1
+  shell: kubectl create -f /tmp/nginx-svc.yml
+  ignore_errors: yes
+
+- name: Run nginx-svc service 2
+  shell: kubectl create -f /tmp/nginx-svc2.yml
+  ignore_errors: yes

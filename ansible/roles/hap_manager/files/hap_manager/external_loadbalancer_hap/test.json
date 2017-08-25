@@ -1,0 +1,314 @@
+{
+  "kind": "ServiceList",
+  "apiVersion": "v1",
+  "metadata": {
+    "selfLink": "/api/v1/services",
+    "resourceVersion": "846702"
+  },
+  "items": [
+    {
+      "metadata": {
+        "name": "glusterfs-cluster",
+        "namespace": "default",
+        "selfLink": "/api/v1/namespaces/default/services/glusterfs-cluster",
+        "uid": "af3a6a62-1383-11e6-adcc-fa163e305b73",
+        "resourceVersion": "288343",
+        "creationTimestamp": "2016-05-06T12:11:38Z",
+        "labels": {
+          "name": "glusterfs-cluster"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "protocol": "TCP",
+            "port": 1,
+            "targetPort": 1
+          }
+        ],
+        "portalIP": "10.254.192.43",
+        "clusterIP": "10.254.192.43",
+        "type": "ClusterIP",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    },
+    {
+      "metadata": {
+        "name": "kubernetes",
+        "namespace": "default",
+        "selfLink": "/api/v1/namespaces/default/services/kubernetes",
+        "uid": "858733a0-0b97-11e6-8242-fa163e71fb50",
+        "resourceVersion": "14",
+        "creationTimestamp": "2016-04-26T10:13:28Z",
+        "labels": {
+          "component": "apiserver",
+          "provider": "kubernetes"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "https",
+            "protocol": "TCP",
+            "port": 443,
+            "targetPort": 443
+          }
+        ],
+        "portalIP": "10.254.0.1",
+        "clusterIP": "10.254.0.1",
+        "type": "ClusterIP",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    },
+    {
+      "metadata": {
+        "name": "nginx-service",
+        "namespace": "default",
+        "selfLink": "/api/v1/namespaces/default/services/nginx-service",
+        "uid": "ea455adb-0c53-11e6-8887-fa163e305b73",
+        "resourceVersion": "21251",
+        "creationTimestamp": "2016-04-27T08:42:03Z",
+        "labels": {
+          "app": "nginx"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "http",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 80,
+            "nodePort": 30630
+          }
+        ],
+        "selector": {
+          "name": "nginx"
+        },
+        "portalIP": "10.254.233.171",
+        "clusterIP": "10.254.233.171",
+        "type": "NodePort",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    },
+    {
+      "metadata": {
+        "name": "nginx-service-domain",
+        "namespace": "default",
+        "selfLink": "/api/v1/namespaces/default/services/nginx-service-domain",
+        "uid": "0e1801dd-1c05-11e6-9e78-fa163e305b73",
+        "resourceVersion": "846666",
+        "creationTimestamp": "2016-05-17T07:57:51Z",
+        "labels": {
+          "app": "nginx",
+          "domain": "www.test-domain.com"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "http",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 80,
+            "nodePort": 30005
+          }
+        ],
+        "selector": {
+          "name": "nginx"
+        },
+        "portalIP": "10.254.122.140",
+        "clusterIP": "10.254.122.140",
+        "type": "NodePort",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    },
+    {
+      "metadata": {
+        "name": "nginx-service-dominion",
+        "namespace": "default",
+        "selfLink": "/api/v1/namespaces/default/services/nginx-service-dominion",
+        "uid": "d0da6948-1c00-11e6-9e78-fa163e305b73",
+        "resourceVersion": "845071",
+        "creationTimestamp": "2016-05-17T07:27:31Z",
+        "labels": {
+          "app": "nginx",
+          "dominion": "www.nginx-test.com"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "http",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 80
+          }
+        ],
+        "selector": {
+          "name": "nginx"
+        },
+        "portalIP": "10.254.20.10",
+        "clusterIP": "10.254.20.10",
+        "type": "ClusterIP",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    },
+    {
+      "metadata": {
+        "name": "nginx-service3",
+        "namespace": "default",
+        "selfLink": "/api/v1/namespaces/default/services/nginx-service3",
+        "uid": "1134a624-0c61-11e6-8887-fa163e305b73",
+        "resourceVersion": "23875",
+        "creationTimestamp": "2016-04-27T10:16:12Z",
+        "labels": {
+          "app": "nginx"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "http",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 80
+          }
+        ],
+        "selector": {
+          "name": "nginx"
+        },
+        "portalIP": "10.254.10.10",
+        "clusterIP": "10.254.10.10",
+        "type": "ClusterIP",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    },
+    {
+      "metadata": {
+        "name": "nginxsvc",
+        "namespace": "default",
+        "selfLink": "/api/v1/namespaces/default/services/nginxsvc",
+        "uid": "6d627664-182b-11e6-9e78-fa163e305b73",
+        "resourceVersion": "494398",
+        "creationTimestamp": "2016-05-12T10:22:27Z",
+        "labels": {
+          "app": "nginx"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "http",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 80
+          }
+        ],
+        "selector": {
+          "app": "nginx"
+        },
+        "portalIP": "10.254.75.10",
+        "clusterIP": "10.254.75.10",
+        "type": "ClusterIP",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    },
+    {
+      "metadata": {
+        "name": "kube-dns",
+        "namespace": "kube-system",
+        "selfLink": "/api/v1/namespaces/kube-system/services/kube-dns",
+        "uid": "8e2e711f-12b6-11e6-af50-fa163e305b73",
+        "resourceVersion": "234463",
+        "creationTimestamp": "2016-05-05T11:43:16Z",
+        "labels": {
+          "k8s-app": "kube-dns",
+          "kubernetes.io/cluster-service": "true",
+          "kubernetes.io/name": "KubeDNS"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "dns",
+            "protocol": "UDP",
+            "port": 53,
+            "targetPort": 53
+          },
+          {
+            "name": "dns-tcp",
+            "protocol": "TCP",
+            "port": 53,
+            "targetPort": 53
+          }
+        ],
+        "selector": {
+          "k8s-app": "kube-dns"
+        },
+        "portalIP": "10.254.0.10",
+        "clusterIP": "10.254.0.10",
+        "type": "ClusterIP",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    },
+    {
+      "metadata": {
+        "name": "kubernetes-dashboard",
+        "namespace": "kube-system",
+        "selfLink": "/api/v1/namespaces/kube-system/services/kubernetes-dashboard",
+        "uid": "ef69d00b-1696-11e6-89ae-fa163e305b73",
+        "resourceVersion": "414844",
+        "creationTimestamp": "2016-05-10T10:06:59Z",
+        "labels": {
+          "k8s-app": "kubernetes-dashboard",
+          "kubernetes.io/cluster-service": "true"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 9090,
+            "nodePort": 31974
+          }
+        ],
+        "selector": {
+          "k8s-app": "kubernetes-dashboard"
+        },
+        "portalIP": "10.254.8.75",
+        "clusterIP": "10.254.8.75",
+        "type": "NodePort",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    }
+  ]
+}

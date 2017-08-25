@@ -1,0 +1,28 @@
+---
+- name: Install kubernetes-node, docker and flannel packages
+  yum: pkg={{item}} state=installed
+  with_items:
+    - kubernetes-node
+    - docker
+    - flannel
+
+- name: Copy kubelet configuration file
+  template: src=kubelet_config.j2 dest=/etc/kubernetes/kubelet mode=0664
+
+- name: Copy kubernetes configuration file
+  template: src=kubernetes_config.j2 dest=/etc/kubernetes/config mode=0664
+
+- name: Copy flanneld config file
+  template: src=flanneld_config.j2 dest=/etc/sysconfig/flanneld mode=0664
+
+- name: Enable and Restart kube-proxy
+  service: name=kube-proxy  enabled=yes state=restarted
+
+- name: Enable and Restart kubelet
+  service: name=kubelet enabled=yes state=restarted
+
+- name: Enable and Restart docker
+  service: name=docker enabled=yes state=restarted
+
+- name: Enable and Restart flannel
+  service: name=flanneld enabled=yes state=restarted
