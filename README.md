@@ -74,12 +74,12 @@ Now check the entire cluster with the next tips
   ``sudo pcs cluster status``  
   ``sudo pcs resource show``  
 
-* Go to proxy-1 node and check nodes 
+* Go to proxy-1 node and check nodes  
   ``vagrant ssh Caldera-proxy-1``  
   ``sudo pcs cluster status``  
   ``sudo pcs resource show``  
 
-* Finally in localhost check the "Nginx services welcome page" 
+* Finally in localhost check the "Nginx services welcome page"  
   ``curl 10.10.10.68/nginx-service-domain/``  
   ``curl 10.10.10.68/nginx-service-domain/``  
 
