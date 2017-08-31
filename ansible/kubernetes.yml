@@ -22,7 +22,7 @@
   become: true
   roles:
     - pcs_hamaster_setup
-    - nginx_services
+    - services
 
 - hosts: proxies
 #  user: root

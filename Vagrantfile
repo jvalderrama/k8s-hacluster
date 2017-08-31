@@ -16,7 +16,6 @@ Vagrant.configure(2) do |config|
 	        srv.ssh.insert_key = server['insert_key']
 	        srv.vm.hostname = server['name']
   	        srv.vm.network 'private_network', :ip => server['ip_addr']
-  		srv.vm.network "public_network", :bridge => 'br1', :dev => 'br0'
         	srv.vm.synced_folder ".", "/home/vagrant/sync", disabled: server['disable_synched_folder']
                 srv.vm.provider :libvirt do |v|
 		    # Quitamos el prefix para que no nos ponga por defecto 

@@ -1,14 +1,16 @@
 # High Availability Kubernetes Cluster
 
+Deploy kubernetes on the fly, the project creates a **HA kubernetes cluster** ``two master nodes, two minions 
+nodes and two poxies nodes``, it uses **Vagrant** with **KVM** as infrastecture provider (IaaS) and 
+**Ansible** as configuration manager to automatically have a ready and functional **HA kubernetes cluster** 
+in less than 15 minutes. 
+
+Finally it deploys two **kubernetes nginx services** these two test the balance between proxies for different 
+requests and an **api** to make a request to the proxies from a browser.
+
 Reference: http://tedezed.github.io/Celtic-Kubernetes/HTML/3-Kube_HA_pcs.html
 
 ![alt text](http://tedezed.github.io/Celtic-Kubernetes/HTML/Imagenes/topo2.jpg)
-
-Deploy kubernetes on the fly, the project creates a HA ``two master nodes, two minions nodes and two poxies nodes``,
-it uses **Vagrant** with **KVM** as infrastecture provider (IaaS) and **Ansible** as configuration manager
-to automatically have a ready and functional **HA kubernetes cluster** in less than 15 minutes.
-Finally it deploys two **kubernetes nginx services** these two test the balance between proxies for different 
-request.
 
 ## 1. Pre-requisites
 
@@ -81,8 +83,11 @@ Now check the entire cluster with the next tips
 
 * Finally in localhost check the "Nginx services welcome page"  
   ``curl 10.10.10.68/nginx-service-domain/``  
-  ``curl 10.10.10.68/nginx-service-domain/``  
+  ``curl 10.10.10.68/nginx-service-domain-2/``
+  
+  From a browser  
+  ``http://10.10.10.68:8080/avg/authservice/rest/imsi``
 
-## 5.Credits
+## 5. Credits
 
 Thanks also to my partners @Noel_illo (Noel Ruiz Lopez) and @M4nu_sL (Manuel Sanchez Lopez) for your great job :)

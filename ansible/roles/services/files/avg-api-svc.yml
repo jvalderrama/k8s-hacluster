@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: avg
+  labels:
+    app: avg-api
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    protocol: TCP
+    name: http
+  selector:
+    name: avg-api

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+ name: avg-api-controller
+spec:
+ replicas: 2
+ selector:
+   name: avg-api
+ template:
+   metadata:
+     labels:
+       name: avg-api
+   spec:
+     containers:
+       - name: avg-api
+         image: joedval/avg_api:1.0
+         ports:
+           - containerPort: 8080
