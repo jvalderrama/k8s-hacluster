@@ -5,3 +5,7 @@
     line: "{{ hostvars[item].inventory_hostname }} {{ hostvars[item].cluster_host }}"
     state: present
   with_items: "{{ groups.all }}"
+
+- name: Http | Intalling Http client library 
+  pip:
+    name: httplib2
