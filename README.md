@@ -1,4 +1,4 @@
-# High Availability Kubernetes Cluster
+# High Availability Kubernetes Cluster + Scaling 
 
 Deploy kubernetes on the fly, the project creates a **HA kubernetes cluster** ``two master nodes, two minions 
 nodes and two poxies nodes``, it uses **Vagrant** with **KVM** as infrastecture provider (IaaS) and 
@@ -7,6 +7,9 @@ in less than 15 minutes.
 
 Finally it deploys two **kubernetes nginx services** these two test the balance between proxies for different 
 requests and an **api** to make a request to the proxies from a browser.
+
+As an extra the entire **HA kubernetes cluster** ca be scalable if wished, the project has a **k8s-scale** project
+to **add a new minion** to the existing cluster.  
 
 Reference: http://tedezed.github.io/Celtic-Kubernetes/HTML/3-Kube_HA_pcs.html
 
@@ -87,6 +90,34 @@ Now check the entire cluster with the next tips
   
   From a browser  
   ``http://10.10.10.68:8080/avg/authservice/rest/imsi``
+
+## 5. Scale the existing HA Kubernetes Cluster
+
+Follow the next steps to scale up your entire cluster  
+
+* Go inside the folder k8s-scale  
+  ``cd k8s-hacluster/k8s-scale/``  
+  
+* Start up the new Minion node to add in the ``Kubernetes Cluster``  
+   ``vagrant up --provider libvirt``  
+
+* Go to master node and check minion nodes  
+  ``vagrant ssh Mulhacen-master-1``  
+  ``kubectl get nodes``  
+
+* Go to master node and check minion nodes (Must be appears three nodes)  
+  ``vagrant ssh Mulhacen-master-1``  
+  ``kubectl get nodes``  
+
+* Deploy a new pod inside the new minion node  
+  ``Replace file in /tmp/avg-api-rc.yml in line 6 **replicas: 2** key by **replicas: 3**``   
+  ``kubectl replace rc --filename=/tmp/avg-api-rc.yml``   
+
+* Check the new pod deployed in the new minion node (Must be appears three avg-api-controller-*, one of these deployed
+  in the new minion node)  
+  ``kubectl get pods``  
+
+That's all, cluster has been scaled up !!!
 
 ## 5. Credits
 
