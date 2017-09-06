@@ -1,0 +1,14 @@
+[{
+	
+		"name": "Matterhorn-minion-3",
+		"box": "centos/7",
+		"box-url": "https://atlas.hashicorp.com/centos/boxes/7/versions/1702.01/providers/libvirt.box",
+		"ram": 512,
+		"cpu": 1,
+		"hostname_resolver": "on",
+		"apic": "on",
+		"insert_key": false,
+		"disable_synched_folder": true,
+		"ip_addr": "10.10.10.66"
+	}
+]

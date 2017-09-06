@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/home/altran/asgard/ha_refactor/k8s-scale","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
