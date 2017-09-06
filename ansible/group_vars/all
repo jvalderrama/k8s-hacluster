@@ -44,11 +44,3 @@ args_cluster_domain: cluster.local
 #Flannel Configuration
 flannel_etcd_key: "/centOS/network"       
 flannel_network: '{"Network":"10.80.0.0/16"}'
-
-#Proxy Configuration
-proxy_minion1: Caballo-minion-1
-proxy_minion2: Alcazaba-minion-2
-proxy_ip_minion1: 10.10.10.62
-proxy_ip_minion2: 10.10.10.63
-proxy_port_backend1: 30630
-proxy_port_backend2: 30357

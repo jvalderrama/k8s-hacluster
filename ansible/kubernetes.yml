@@ -6,33 +6,33 @@
     - cluster
 
 - hosts: masters
-#  user: root
+# user: root
   become: true
   roles:
     - masters
 
 - hosts: minions
-#  user: root
+# user: root
   become: true
   roles:
     - minions
 
 - hosts: master-1
-#  user: root
+# user: root
   become: true
   roles:
     - pcs_hamaster_setup
     - services
 
 - hosts: proxies
-#  user: root
+# user: root
   become: true
   roles:
     - proxy
     - hap_manager
 
 - hosts: proxy-2
-#  user: root
+# user: root
   become: true
   roles:
     - pcs_haproxy_setup

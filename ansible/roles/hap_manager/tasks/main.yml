@@ -16,23 +16,9 @@
     - jinja2
     - deepdiff
     - requests
-#- name: Install jinja2
-#  pip:
-#    name: jinja2
-#
-#- name: Install deepdiff
-#  pip:
-#    name: deepdiff
-
-#- name: Install requests
-#  pip:
-#    name: requests
 
 - name: Create errors html dir for haproxy
   file: path=/etc/haproxy/errors state=directory
-
-#- name: Move to /etc/haproxy the haproxy.conf
-#  shell: cp /Celtic-Kubernetes/external_loadbalancer_hap/system/haproxy.cfg /etc/haproxy/
 
 - name: Move to /etc/haproxy/erros the content of this folder
   shell: cp /hap_manager/external_loadbalancer_hap/errors/* /etc/haproxy/errors/
@@ -42,9 +28,6 @@
 
 - name: Create state global 2/2
   shell: touch /var/state/haproxy/global
-
-#- name: Enable haproxy
-#  service: name=haproxy enabled=yes
 
 - name: Copy file hap_manager.service
   shell: cp /hap_manager/external_loadbalancer_hap/system/hap_manager.service /lib/systemd/system/hap_manager.service
