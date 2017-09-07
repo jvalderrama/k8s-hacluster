@@ -8,7 +8,7 @@ in less than 15 minutes.
 Finally it deploys two **kubernetes nginx services** these two test the balance between proxies for different 
 requests and an **api** to make a request to the proxies from a browser.
 
-As an extra the entire **HA kubernetes cluster** ca be scalable if wished, the project has a **k8s-scale** project
+As an extra the entire **HA kubernetes cluster** can be scalable if wished, the project has a **k8s-scale** project
 to **add a new minion** to the existing cluster.  
 
 Reference: http://tedezed.github.io/Celtic-Kubernetes/HTML/3-Kube_HA_pcs.html

@@ -51,7 +51,7 @@
   shell: echo -e "{{ pcs_user }}\n{{ pcs_password }}" | sudo passwd {{ pcs_password }}
   become_method: sudo
 
-- name: Restart ans enable pcs service
+- name: Restart and enable pcs service
   service: name=pcsd enabled=yes state=restarted
 
 - name: Copy corosync configuration file
