@@ -17,6 +17,9 @@
     - deepdiff
     - requests
 
+- name: Copy hap_manager configuration file
+  template: src=hap_manager_config.j2 dest=/hap_manager/external_loadbalancer_hap/configuration.json
+
 - name: Create errors html dir for haproxy
   file: path=/etc/haproxy/errors state=directory
 
