@@ -21,13 +21,13 @@
   shell: pcs resource clone ClusterIP globally-unique=true clone-max={{ pcs_masters_clone_max }} clone-node-max={{ pcs_masters_clone_node_max }}
 
 - name: Create APIserver - PCS controller
-  shell: pcs resource create APIServer systemd:kube-apiserver master-max={{ pcs_masters_master_max }} --group {{ pcs_masters_cluster_group_name }}
+  shell: pcs resource create APIServer systemd:kube-apiserver master-max={{ pcs_masters_master_max }} --group {{ pcs_masters_cluster_group_name }} --force
 
 - name: Create scheduller - PCS controller
-  shell: pcs resource create Scheduler systemd:kube-scheduler master-max={{ pcs_masters_master_max }} --group {{ pcs_masters_cluster_group_name }}
+  shell: pcs resource create Scheduler systemd:kube-scheduler master-max={{ pcs_masters_master_max }} --group {{ pcs_masters_cluster_group_name }} --force
 
 - name:  Create Kubernetes controller - PCS controller
-  shell: pcs resource create Controller systemd:kube-controller-manager master-max={{ pcs_masters_master_max }} --group {{ pcs_masters_cluster_group_name }}
+  shell: pcs resource create Controller systemd:kube-controller-manager master-max={{ pcs_masters_master_max }} --group {{ pcs_masters_cluster_group_name }} --force
 
 - name: Clone the PCS resources
   shell: pcs resource clone {{ pcs_masters_cluster_group_name }}
