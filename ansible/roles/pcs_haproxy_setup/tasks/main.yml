@@ -18,10 +18,10 @@
   shell: pcs resource clone ClusterIP globally-unique=true clone-max={{ pcs_proxies_clone_max }} clone-node-max={{ pcs_proxies_clone_node_max }}
 
 - name: Create HAProxy resource
-  shell: pcs resource create HAProxy systemd:haproxy master-max={{ pcs_proxies_master_max }} --group {{ pcs_proxies_cluster_group_name }}
+  shell: pcs resource create HAProxy systemd:haproxy master-max={{ pcs_proxies_master_max }} --group {{ pcs_proxies_cluster_group_name }} --force
 
 - name: Create HAManager resource
-  shell: pcs resource create HAPManager systemd:hap_manager master-max={{ pcs_proxies_master_max }} --group {{ pcs_proxies_cluster_group_name }}
+  shell: pcs resource create HAPManager systemd:hap_manager master-max={{ pcs_proxies_master_max }} --group {{ pcs_proxies_cluster_group_name }} --force
 
 - name: Clone the resources
   shell: pcs resource clone {{ pcs_proxies_cluster_group_name }}
